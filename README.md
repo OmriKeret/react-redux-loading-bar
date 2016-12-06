@@ -27,7 +27,7 @@ npm install --save react-redux-loading-bar
 ```
 
 ## Usage
-
+****
 Mount the `LoadingBar` component anywhere in your application:
 
 ```jsx
@@ -95,22 +95,25 @@ If you're not using `redux-promise-middleware` or any other promise middleware, 
 
 ## Usage without middleware
 
-You can dispatch `SHOW`/`HIDE` actions wherever you want by importing the corresponding action creators:
+You can dispatch `SHOW`/`HIDE`/`FORCE_HIDE` actions wherever you want by importing the corresponding action creators:
 
 ```jsx
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import { showLoading, hideLoading, forceHideLoading } from 'react-redux-loading-bar'
 
 dispatch(showLoading())
 // do long running stuff
 dispatch(hideLoading())
+// reset all loading processes
+dispatch(forceHideLoading())
 ```
 
 You need to dispatch `HIDE` as many times as `SHOW` was dispatched to make the bar disappear. In other words, the loading bar is shown until all long running tasks complete.
+If needed you can dispatch `FORCE_HIDE` in order to reset the loading process and hide the loading bar.
 
 ## Usage with `redux-saga`
 
 Install the `loadingBarMiddleware()` and mount Loading Bar in your application.
-You can import and dispatch `showLoading` and `hideLoading` from your sagas.
+You can import and dispatch `showLoading`, `hideLoading` from your sagas.
 
 ```jsx
 import { showLoading, hideLoading } from 'react-redux-loading-bar'

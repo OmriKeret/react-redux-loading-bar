@@ -5,8 +5,10 @@ import {
   loadingBarReducer,
   SHOW,
   HIDE,
+  FORCE_HIDE,
   showLoading,
   hideLoading,
+  forceHideLoading,
 } from '../src/loading_bar_ducks'
 
 describe('loadingBarReducer', () => {
@@ -37,9 +39,22 @@ describe('loadingBarReducer', () => {
       loadingBarReducer(undefined, { type: HIDE }),
     ).toEqual(0)
 
-
     expect(
       loadingBarReducer(0, { type: HIDE }),
+    ).toEqual(0)
+  })
+
+  it('handles FORCE HIDE', () => {
+    expect(
+      loadingBarReducer(2, { type: FORCE_HIDE }),
+    ).toEqual(0)
+
+    expect(
+      loadingBarReducer(undefined, { type: FORCE_HIDE }),
+    ).toEqual(0)
+
+    expect(
+      loadingBarReducer(0, { type: FORCE_HIDE }),
     ).toEqual(0)
   })
 })
@@ -51,5 +66,9 @@ describe('actions', () => {
 
   it('creates an action to hide loading bar', () => {
     expect(hideLoading()).toEqual({ type: HIDE })
+  })
+
+  it('creates an action to hide loading bar', () => {
+    expect(forceHideLoading()).toEqual({ type: FORCE_HIDE })
   })
 })
